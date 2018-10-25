@@ -9,6 +9,6 @@ COPY . /app/userRestApi
 
 WORKDIR /app/userRestApi
 
-CMD npm rum start
+CMD npm run start
 
 EXPOSE 8081
