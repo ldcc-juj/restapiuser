@@ -12,6 +12,8 @@ const dbModule = require('./modules/dbModule');
 const routeModule = require('./modules/routeModules');
 
 global.app = new express();
+global.baseUrl = process.env.NODE_ENV === 'ec2' ? `http://ec2-18-225-32-252.us-east-2.compute.amazonaws.com:${config.server.port}`
+: `http://localhost:${config.server.port}`;
 
 function processRun() {
     (async () => {
