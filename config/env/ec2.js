@@ -9,6 +9,6 @@ module.exports = {
         redisPassword: null
     },
     mongoose: {
-        url: 'mongodb://10.131.144.132/test'
+        url: 'mongodb://localhost/test'
     }
 };
