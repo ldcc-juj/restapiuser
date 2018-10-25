@@ -3,7 +3,7 @@ module.exports = {
         port: 8081
     },
     redis: {
-        redisHost: "18.188.215.147",
+        redisHost: "18.225.32.252",
         redisPort: 6379,
         redisDatabase: 1,
         redisPassword: null

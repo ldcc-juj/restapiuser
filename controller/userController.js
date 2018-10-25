@@ -85,14 +85,14 @@ router.post('/findUser', (req, res) => {
     }
 });
 
-router.post('/updateUser', (req, res) => {
+router.post('/updateUser', async (req, res) => {
     try {
-        const { key } = await go(
+        const { session } = await go(
             req.headers['auth-token'],
             getValue
         );
 
-        if (!key) throw 0;
+        if (!session) throw 0;
 
         go(
             req.headers['auth-token'],
@@ -126,12 +126,12 @@ router.post('/updateUser', (req, res) => {
 
 router.post('/deleteUser', async (req, res) => {
     try {
-        const { key } = await go(
+        const { session } = await go(
             req.headers['auth-token'],
             getValue
         );
 
-        if (!key) throw 0;
+        if (!session) throw 0;
 
         go(
             req.headers['auth-token'],
@@ -145,7 +145,8 @@ router.post('/deleteUser', async (req, res) => {
             },
             v => userModel.delete(v).catch(e => { throw e }),
             // deleteResult => res.json(JSON.parse(deleteResult))
-            deleteResult => respondJson(res, resultCode.success, { data : deleteResult })
+            deleteResult => respondJson(res, resultCode.success, { data : deleteResult }),
+            _ => delKey(req.headers['auth-token'])
         );
     } catch (e) {
         respondOnError(res, resultCode.error, e.message);
