@@ -1,7 +1,7 @@
 const util = require('util');
 const moment = require('moment-timezone');
 
-const {userCtrl} = require('../controller');
+const { userCtrl, mockCtrl } = require('../controller');
 
 const RouteModules = (function(){
     return {
@@ -16,7 +16,8 @@ const RouteModules = (function(){
                 next();
             });
 
-            app.use('/user', userCtrl);
+            // app.use('/user', userCtrl);
+            app.use('/lohbs/api', mockCtrl);
             console.log(util.format('[Logger]::[Route]::[Service]::[%s]::[Started]', 
             moment().tz('Asia/Seoul').format('YYYY-MM-DD HH:mm:ss')));
         }

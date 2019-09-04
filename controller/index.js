@@ -1,5 +1,7 @@
 const userController = require('../controller/userController');
+const mockController = require('../controller/mockController');
 
 module.exports = {
-    userCtrl: userController
+    userCtrl: userController,
+    mockCtrl: mockController
 };
