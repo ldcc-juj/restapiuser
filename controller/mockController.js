@@ -1,6 +1,5 @@
 const express = require('express');
 const util = require('util');
-const uuidv4 = require('uuid/v4');
 const moment = require('moment-timezone');
 const _ = require('lodash');
 const router = express.Router();
@@ -21,7 +20,7 @@ router.use((req, res, next) => {
 
 router.post('/user/check', (req, res) => {
     try {
-        const { userKey, bot, intent, utterance, request: { apiId, apiName, params } } = req.body;
+        const { user, phone, utterance = "" } = req.body;
 
         const responseResult = {
             "contentType": [
@@ -44,12 +43,12 @@ router.post('/user/check', (req, res) => {
             "responseTitle": ""
         }
 
-        if (!params.user || !params.phone) { return respondJson(res, resultCode.success, responseResult); }
-        const user = config.users.find(user => user.name === params.user && user.hp === params.phone);
-        if (!!user) {
+        if (!user || !phone) { return respondJson(res, resultCode.success, responseResult); }
+        const findUser = config.users.find(us => us.name === user && us.hp === phone);
+        if (!!findUser) {
             responseResult.responseText = [
                 `띵동!
-                ${params.user}님의 입력하신 휴대폰 번호 ${params.phone}으로 인증번호를 전송하였습니다!
+                ${user}님의 입력하신 휴대폰 번호 ${phone}으로 인증번호를 전송하였습니다!
                 입력해주세요~`
             ]
             responseResult.responseButtons = [];
@@ -74,7 +73,7 @@ router.post('/user/check', (req, res) => {
 
 router.post('/user/get', (req, res) => {
     try {
-        const { userKey, bot, intent, utterance, request: { apiId, apiName, params } } = req.body;
+        const { user, phone, utterance = "" } = req.body;
 
         const responseResult = {
             "contentType": [
@@ -92,10 +91,10 @@ router.post('/user/get', (req, res) => {
         }
 
         if (utterance === '123456') {
-            const user = first(config.users.filter(user => user.name === params.user && user.hp === params.phone));
-            const orderList = user.orderList.join('\n');
+            const findUser = first(config.users.filter(us => us.name === user && us.hp === phone));
+            const orderList = findUser.orderList.join('\n');
             responseResult.responseText = [
-                `${params.user}고객님, 인증해주셔서 감사합니다:)
+                `${user}고객님, 인증해주셔서 감사합니다:)
                 고객님의 최근 3개월 주문 내역은 다음과 같습니다.
 
                 ${orderList}
