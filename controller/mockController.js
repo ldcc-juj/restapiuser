@@ -18,7 +18,7 @@ router.use((req, res, next) => {
     next();
 });
 
-router.post('/user/check', (req, res) => {
+router.post('/user/check', async (req, res) => {
     try {
         const { user, phone, utterance = "" } = req.body;
 
@@ -44,7 +44,7 @@ router.post('/user/check', (req, res) => {
         }
 
         if (!user || !phone) { return respondJson(res, resultCode.success, responseResult); }
-        const findUser = config.users.find(us => us.name === user && us.hp === phone);
+        const findUser = await config.users.find(us => us.name === user && (us.hp === phone || us.hp === utterance));
         if (!!findUser) {
             responseResult.responseText = [
                 `띵동!
@@ -71,7 +71,7 @@ router.post('/user/check', (req, res) => {
     } 
 });
 
-router.post('/user/get', (req, res) => {
+router.post('/user/get', async (req, res) => {
     try {
         const { user, phone, utterance = "" } = req.body;
 
@@ -91,7 +91,7 @@ router.post('/user/get', (req, res) => {
         }
 
         if (utterance === '123456') {
-            const findUser = first(config.users.filter(us => us.name === user && us.hp === phone));
+            const findUser = await first(config.users.filter(us => us.name === user && us.hp === phone));
             const orderList = findUser.orderList.join('\n');
             responseResult.responseText = [
                 `${user}고객님, 인증해주셔서 감사합니다:)
