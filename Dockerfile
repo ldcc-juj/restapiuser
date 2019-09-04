@@ -1,17 +1,17 @@
-FROM node:8
+FROM node:10
 
-RUN mkdir -p /app/userRestApi
+RUN mkdir -p /app/mockserver
 
-COPY package.json /app/userRestApi/package.json
-RUN cd /app/userRestApi; npm install
+COPY package.json /app/mockserver/package.json
+RUN cd /app/mockserver; npm install
 
 RUN echo 'node version : ' && node --version
 RUN echo 'npm  version : ' &&  npm --version
 
-COPY . /app/userRestApi
+COPY . /app/mockserver
 
-WORKDIR /app/userRestApi
+WORKDIR /app/mockserver
 
 CMD npm run start
 
-EXPOSE 8081
+EXPOSE 3000
