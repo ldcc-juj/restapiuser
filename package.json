@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:linux": "export NODE_ENV=development&& node main.js",
-    "start:window": "set NODE_ENV=development&& node main.js",
+    "start:window": "set NODE_ENV=development&& nodemon main.js",
     "start": "export NODE_ENV=ec2&& node main.js"
   },
   "author": "",
@@ -22,11 +22,11 @@
     "moment": "^2.22.2",
     "moment-timezone": "^0.5.21",
     "mongoose": "^5.3.5",
-    "partial-js": "^1.1.6",
     "path": "^0.12.7",
-    "react": "^16.6.0",
-    "react-native": "^0.60.5",
     "util": "^0.11.0",
     "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.2"
   }
 }

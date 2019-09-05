@@ -35,9 +35,9 @@ router.post('/user/check', async (req, res) => {
             "imageUrl": null,
             "responseButtons": [{
                 "type": "webLinkUrl",
-                "name": "웹링크",
+                "name": "회원가입 하러가기",
                 "nextBlock": null,
-                "webLinkUrl": "www.lohbs.com",
+                "webLinkUrl": "https://members.lpoint.com/exView/join/mbrJoin_01_001",
                 "appLinkUrl": ""
             }],
             "responseTitle": ""
