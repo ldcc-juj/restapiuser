@@ -102,7 +102,7 @@ router.post('/order/burger', async (req, res) => {
             `요청 상세: ${burger} ${isSet} ${number}개
 으로 주문을 요청하시겠어요?
 
-주문 금액은 ${totalPrice}원입니다.`];
+총 주문 금액은 ${totalPrice}원입니다.`];
             responseResult.responseButtons = [{
                 "name": "주문 접수하기",
                 "type": "blockLink",
@@ -110,6 +110,17 @@ router.post('/order/burger', async (req, res) => {
                     "id": "5d4a8d0b02ab5d0029b5e28c",
                     "name": "주문 확인",
                     "blockIndex": "scenario_5d4a8ca902ab5d0029b5e28b_5d4a8d0b02ab5d0029b5e28c"
+                },
+                "webLinkUrl": "",
+                "appLinkUrl": ""
+            },
+            {
+                "name": "디저트 요청",
+                "type": "blockLink",
+                "nextBlock": {
+                    "id": "5d4cc782eb2d30002973ebb0",
+                    "name": "디저트 추가 안내",
+                    "blockIndex": "scenario_5d4cc75beb2d30002973ebaf_5d4cc782eb2d30002973ebb0"
                 },
                 "webLinkUrl": "",
                 "appLinkUrl": ""
