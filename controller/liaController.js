@@ -162,13 +162,14 @@ router.post('/order/dessert', async (req, res) => {
             }
 
             responseResult.responseText = [`네! ${dessert} 추가하겠습니다!\n추가로 ${dessertPrice}원이 지불됩니다.`]
-            responseResult.responseButtons = [{
+            responseResult.responseButtons = [
+            {
                 "name": "주문 접수하기",
                 "type": "blockLink",
                 "nextBlock": {
-                    "id": "5d4a8d0b02ab5d0029b5e28c",
-                    "name": "주문 확인",
-                    "blockIndex": "scenario_5d4a8ca902ab5d0029b5e28b_5d4a8d0b02ab5d0029b5e28c"
+                    "id": "5d70b18c97a0671e5c629535",
+                    "name": "주문 확인(디저트포함)",
+                    "blockIndex": "scenario_5d4cc75beb2d30002973ebaf_5d70b18c97a0671e5c629535"
                 },
                 "webLinkUrl": "",
                 "appLinkUrl": ""
