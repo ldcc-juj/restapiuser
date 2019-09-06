@@ -32,7 +32,7 @@ router.post('/order/list', async (req, res) => {
             "imagePath": null,
             "imageUrl": null,
             "responseButtons": [{
-                "type": "webLinkUrl",
+                "type": "webLink",
                 "name": "24시 매장 검색",
                 "nextBlock": null,
                 "webLinkUrl": "http://www.lotteria.com/Shop/Shop_List.asp",
@@ -53,17 +53,7 @@ router.post('/order/list', async (req, res) => {
             )
 
             responseResult.responseText = [`현재 주문가능한 메뉴입니다.\n\n${burgerList}\n주문하실 메뉴와 수량을 입력하세요~`];
-            responseResult.responseButtons = [{
-                "name": "주문 취소",
-                "type": "blockLink",
-                "nextBlock": {
-                    "id": "5d70a14197a0671e5c629530",
-                    "name": "주문취소",
-                    "blockIndex": "scenario_5d4a8be702ab5d0029b5e282_5d70a14197a0671e5c629530"
-                },
-                "webLinkUrl": "",
-                "appLinkUrl": ""
-            }];
+            responseResult.responseButtons = [];
         }
 
         return respondJson(res, resultCode.success, responseResult);
