@@ -18,6 +18,17 @@ router.use((req, res, next) => {
     next();
 });
 
+router.post('/echo', async (req, res) => {
+    try {
+        const { body } = req.body;
+
+        return respondJson(res, resultCode.success, body);
+    }
+    catch (e) {
+        respondOnError(res, resultCode.error, e.message);
+    }
+});
+
 router.post('/order/list', async (req, res) => {
     try {
         const responseResult = {
