@@ -29,9 +29,56 @@ router.post('/echo', async (req, res) => {
     }
 });
 
+router.post('/askAgain', async (req,res) => {
+    try {
+        const responseResult = {
+            "contentType": [
+                "textRandom",
+            ],
+            "inputType": "text",
+            "responseText": [
+                "되묻기 전용 스킬입니다 :)~~",
+                "되물어보는 스킬",
+                "어떤 걸 되물을 것인가~~"
+            ],
+            "imagePath": null,
+            "imageUrl": null,
+            "responseButtons": [{
+                "type": "webLink",
+                "name": "전자결재 바로가기",
+                "nextBlock": null,
+                "webLinkUrl": "https://intranet.lotte.net/Default.aspx",
+                "appLinkUrl": ""
+            }],
+            "responseTitle": ""
+        }
+
+        return respondJson(res, resultCode.success, responseResult);
+    } catch (e) {
+        respondOnError(res, resultCode.error, e.message);
+    }
+});
+
 router.post('/register', async (req, res) => {
     try {
         const { team, name, departDate, arriveDate } = req.body;
+
+        if (isEmpty(team) || isEmpty(name) || isEmpty(departDate) || isEmpty(arriveDate)) {
+            const fallbackResult = {
+                "contentType": [
+                    "textRandom",
+                ],
+                "inputType": "text",
+                "responseText": [
+                    "필수값들이 모두 입력이 안되었네용 ㅠ_ㅠ"
+                ],
+                "imagePath": null,
+                "imageUrl": null,
+                "responseButtons": [],
+                "responseTitle": ""
+            }
+            return respondJson(res, resultCode.success, fallbackResult);
+        }
 
         const responseResult = {
             "contentType": [
