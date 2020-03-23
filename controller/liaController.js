@@ -7,7 +7,7 @@ const router = express.Router();
 const resultCode = require('../utils/resultCode');
 const { respondJson, respondOnError } = require('../utils/respond');
 const config = require('../config');
-const controllerName = 'User';
+const controllerName = 'Lia';
 
 router.use((req, res, next) => {
     console.log(util.format('[Logger]::[Controller]::[%sController]::[Access Ip %s]::[Access Time %s]',
@@ -234,6 +234,35 @@ router.post('/order/check', async (req, res) => {
     catch (e) {
         respondOnError(res, resultCode.error, e.message);
     } 
+});
+
+router.get('/shift/list', async (req, res) => {
+  try {
+    const data = [
+      {
+        name: "전유정",
+        shift: "9:30 - 13:00",
+        vacation: 3,
+        start: "2019.12.01."
+      },
+      {
+        name: "전현빈",
+        shift: "13:00 - 18:00",
+        vacation: 1,
+        start: "2020.02.01."
+      },
+      {
+        name: "김철수",
+        shift: "18:00 - 23:00",
+        vacation: 10,
+        start: "2019.04.05."
+      }
+    ]
+
+    return respondJson(res, resultCode.success, data);
+  } catch (e) {
+    respondOnError(res, resultCode.error, e.message)
+  }
 });
 
 module.exports = router;
