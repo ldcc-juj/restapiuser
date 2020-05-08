@@ -24,6 +24,7 @@ router.use((req, res, next) => {
 
 router.get("/list", async (req, res) => {
   try {
+    res.header("Access-Control-Allow-Origin", "*");
     return respondJson(res, resultCode.success, data);
   } catch (e) {
     respondOnError(res, resultCode.error, e.message);
@@ -35,7 +36,7 @@ router.post("/member/:id", async (req, res) => {
     const { id } = req.params;
 
     const member = data.find(member => member.id === id);
-
+    res.header("Access-Control-Allow-Origin", "*");
     return !member
     ? respondOnError(res, resultCode.error, "해당 사번으로 조회되는 임직원이 존재하지 않습니다.")
     : respondJson(res, resultCode.success, member);
