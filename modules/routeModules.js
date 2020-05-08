@@ -1,7 +1,7 @@
 const util = require('util');
 const moment = require('moment-timezone');
 
-const { userCtrl, mockCtrl, liaCtrl, IntranetCtrl } = require('../controller');
+const { userCtrl, mockCtrl, liaCtrl, IntranetCtrl, testCtrl } = require('../controller');
 
 const RouteModules = (function(){
     return {
@@ -17,9 +17,10 @@ const RouteModules = (function(){
             });
 
             // app.use('/user', userCtrl);
-            app.use('/lohbs/api', mockCtrl);
-            app.use('/lia/api', liaCtrl);
-            app.use('/intranet/api', IntranetCtrl);
+            // app.use('/lohbs/api', mockCtrl);
+            // app.use('/lia/api', liaCtrl);
+            // app.use('/intranet/api', IntranetCtrl);
+            app.use('/test/api', testCtrl);
             console.log(util.format('[Logger]::[Route]::[Service]::[%s]::[Started]', 
             moment().tz('Asia/Seoul').format('YYYY-MM-DD HH:mm:ss')));
         }
