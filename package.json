@@ -20,7 +20,7 @@
     "ioredis": "^4.2.0",
     "lodash": "^4.17.15",
     "moment": "^2.22.2",
-    "moment-timezone": "^0.5.21",
+    "moment-timezone": "^0.5.35",
     "mongoose": "^5.3.5",
     "path": "^0.12.7",
     "util": "^0.11.0",
